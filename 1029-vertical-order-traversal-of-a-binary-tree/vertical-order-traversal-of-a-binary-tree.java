@@ -15,6 +15,10 @@
  */
 class Solution {
     public List<List<Integer>> verticalTraversal(TreeNode root) {
+        
+        return Vtraverse(root);
+    }
+    private static List<List<Integer>> Vtraverse(TreeNode root){
         TreeMap<Integer, List<int[]>> map = new TreeMap<>();
         Queue<Object[]> q = new LinkedList<>();
         q.offer(new Object[]{root, 0, 0});
@@ -41,7 +45,6 @@ class Solution {
             
             result.add(colVals);
         }
-        
         return result;
     }
 }
