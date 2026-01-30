@@ -1,8 +1,8 @@
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
      //   return bruteforce(nums,k);
-        //  return optimal(nums,k);
-        return optimalSirway(nums,k);
+          return optimal(nums,k);
+        //return optimalSirway(nums,k);
     }
 
    /* public int[] bruteforce(int[] nums, int k) {
@@ -22,7 +22,7 @@ class Solution {
     }
     time limit will exceed in this case        
     */
-    /*
+    
     public int[] optimal(int[] nums, int k) {
     // create result array
     int[] result=new int[nums.length-k+1];
@@ -49,8 +49,8 @@ class Solution {
 
     return result;
 }
-*/
-    public int[] optimalSirway(int[] nums, int k) {
+
+   /* public int[] optimalSirway(int[] nums, int k) {
         int[] result=new int[nums.length-k+1];
         Deque<Integer> dq=new ArrayDeque<>();
 
@@ -85,6 +85,8 @@ class Solution {
 
         return result;
     }
+    in this we uses 2 loops first till element k and than 2nd for rest element so that we can directly store in resultant
+    */
 }
 
 
