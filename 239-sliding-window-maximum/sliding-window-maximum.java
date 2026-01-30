@@ -1,7 +1,8 @@
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
      //   return bruteforce(nums,k);
-          return optimal(nums,k);
+        //  return optimal(nums,k);
+        return optimalSirway(nums,k);
     }
 
    /* public int[] bruteforce(int[] nums, int k) {
@@ -21,6 +22,7 @@ class Solution {
     }
     time limit will exceed in this case        
     */
+    /*
     public int[] optimal(int[] nums, int k) {
     // create result array
     int[] result=new int[nums.length-k+1];
@@ -47,7 +49,44 @@ class Solution {
 
     return result;
 }
+*/
+    public int[] optimalSirway(int[] nums, int k) {
+        int[] result=new int[nums.length-k+1];
+        Deque<Integer> dq=new ArrayDeque<>();
 
+        //first window
+        for(int i=0;i<k;i++)
+        {
+            while(!dq.isEmpty()  &&  nums[dq.peekLast()]<=nums[i])
+            {
+                dq.removeLast();
+            }
+            dq.addLast(i);
+        }
+        result[0] = nums[dq.peekFirst()];
 
+        // 2️⃣ Slide window
+        for (int i = k; i < nums.length; i++) {
 
+            // Remove out-of-window
+            while (!dq.isEmpty() && dq.peekFirst() <= i - k) {
+                dq.removeFirst();
+            }
+
+            // Insert new element
+            while (!dq.isEmpty() && nums[dq.peekLast()] <= nums[i]) {
+                dq.removeLast();
+            }
+            dq.addLast(i);
+
+            // Store max
+            result[i - k + 1] = nums[dq.peekFirst()];
+        }
+
+        return result;
+    }
 }
+
+
+
+
